@@ -1,0 +1,56 @@
+✅ EXAMPLE: Student Class
+class Student {
+
+    private int admin_no;
+    private String stu_name;
+    private String course_joined;
+    private double fees_paid;
+
+    // Constructor
+    Student(int admin_no, String stu_name, String course_joined) {
+        this.admin_no = admin_no;
+        this.stu_name = stu_name;
+        this.course_joined = course_joined;
+        this.fees_paid = 0;
+    }
+
+    // Override equals
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // same reference
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Student other = (Student) obj;
+        return admin_no == other.admin_no &&
+               stu_name.equals(other.stu_name) &&
+               course_joined.equals(other.course_joined);
+    }
+
+    // Override hashCode
+    @Override
+    public int hashCode() {
+        int result = Integer.hashCode(admin_no);
+        result = 31 * result + stu_name.hashCode();
+        result = 31 * result + course_joined.hashCode();
+        return result;
+    }
+
+    // Override toString
+    @Override
+    public String toString() {
+        return "Student[AdminNo=" + admin_no + ", Name=" + stu_name + 
+               ", Course=" + course_joined + ", FeesPaid=" + fees_paid + "]";
+    }
+}
+
+🔍 HOW TO USE IT
+public class TestStudent {
+    public static void main(String[] args) {
+
+        Student s1 = new Student(101, "Sonika", "JAVA");
+        Student s2 = new Student(101, "Sonika", "JAVA");
+
+        System.out.println(s1); // Calls toString()
+        System.out.println("Equal? " + s1.equals(s2)); // true
+        System.out.println("HashCodes: " + s1.hashCode() + ", " + s2.hashCode());
+    }
+}
